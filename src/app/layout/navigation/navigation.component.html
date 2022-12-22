@@ -1,0 +1,18 @@
+<header class="popcorn-header lh-1 py-2 border-bottom">
+  <div class="row flex-nowrap justify-content-between align-items-center">
+    <div class="col-4">
+      <span class="btn btn-sm btn-outline-secondary fs-6 ms-4" routerLink="/movies">Фильмы</span>
+    </div>
+    <div class="col-4 text-center">
+      <span class="popcorn-header-logo text-dark fs-3">afterPopcorn</span>
+    </div>
+    <div class="col-4 d-flex justify-content-end align-items-center" *ngIf="isLoggedIn">
+      <span class="btn btn-link text-secondary me-3 fs-6" routerLink="/profile">{{user.nickname}}</span>
+      <span class="btn btn-sm btn-outline-secondary me-4 fs-6" (click)="logOut()">Logout</span>
+    </div>
+    <div class="col-4 d-flex justify-content-end align-items-center" *ngIf="!isLoggedIn">
+      <span class="btn btn-sm btn-outline-secondary me-3 fs-6" routerLink="/login">Login</span>
+      <span class="btn btn-sm btn-outline-secondary me-4 fs-6 " routerLink="/registration">Registration</span>
+    </div>
+  </div>
+</header>

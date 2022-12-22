@@ -1,0 +1,17 @@
+<mat-grid-list cols="3">
+  <mat-grid-tile>
+    <img class="profile-image" [src]="formatImage(user.image) || 'https://img.icons8.com/ios/512/cat-profile.png'" alt="user image">
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <input type="file"
+           style="display: none"
+           #fileInput
+           (change)="onFileSelected($event)">
+
+    <button mat-button (click)="fileInput.click()">Обновить аватар</button>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <p>{{user.nickname}}</p>
+  </mat-grid-tile>
+</mat-grid-list>
+<router-outlet></router-outlet>

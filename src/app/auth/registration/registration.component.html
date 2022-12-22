@@ -1,0 +1,28 @@
+<div class="reg-page position-absolute top-50 start-50 translate-middle">
+  <form [formGroup]="regForm">
+    <div class="1">
+      <mat-form-field appearance="outline">
+        <mat-label>Nickname</mat-label>
+        <input matInput formControlName="nickname">
+      </mat-form-field>
+    </div>
+    <div class="2">
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password">
+      </mat-form-field>
+    </div>
+    <div class="3">
+      <mat-form-field appearance="outline">
+        <mat-label>Confirm password</mat-label>
+        <input matInput type="password" formControlName="confirmPassword">
+      </mat-form-field>
+    </div>
+    <div class="4" id="controls">
+      <button class="btn btn-sm btn-outline-secondary me-3 fs-6" [disabled]="regForm.invalid" (click)="submit()">Sign
+        up!
+      </button>
+      <a routerLink="/login">Login</a>
+    </div>
+  </form>
+</div>

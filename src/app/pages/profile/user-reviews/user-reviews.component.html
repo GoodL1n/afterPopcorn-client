@@ -1,0 +1,17 @@
+<div class = "reviews-page-profile">
+  <mat-card class="review-card" *ngFor="let review of reviews">
+    <mat-card-header>
+      <mat-card-title>{{review.title}}</mat-card-title>
+      <mat-card-subtitle>{{review.movie_name}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{review.text}}</p>
+    </mat-card-content>
+    <mat-card-actions align="start">
+      <button style="width: 20%"  mat-button (click) = "deleteReview(review.id)">
+        <mat-icon>delete</mat-icon>
+        Delete
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

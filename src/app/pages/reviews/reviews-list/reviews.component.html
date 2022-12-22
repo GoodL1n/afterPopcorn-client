@@ -1,0 +1,10 @@
+<div class = "container reviews-page">
+  <div class="card text-center mt-3" *ngFor="let review of reviews">
+    <h3 class="card-header">{{review.title}}
+    <br> Nickname : {{review.nickname}} </h3>
+    <div class="card-body">
+      <p class="card-text">{{review.text}}</p>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</div>

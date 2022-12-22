@@ -1,0 +1,52 @@
+<div class="container card my-2">
+  <div class="row justify-content-md-center">
+    <div class="col-md-4">
+      <h3 class="card-title text-center fw-bold">{{movie.title}}</h3>
+    </div>
+  </div>
+  <div class="row g-0">
+    <div class="col-md-4">
+      <div class = "row justify-content-md-center">
+        <mat-card-subtitle *ngFor="let genre of movie.genres">
+          {{genre.title}}
+        </mat-card-subtitle>
+      </div>
+      <div class="row justify-content-md-center" *ngIf="isRating">
+        <div class="col-sm-12">
+          <p>Общий рейтинг: {{movie.averageRate}} </p> <br>
+          <p>Ваша оценка: </p>
+          <ul class="list-inline rating-list" *ngFor="let star of stars; let i= index" style="display: inline-block">
+            <li [ngClass]="{'selected': (star <= rate.stars)}">
+              ★
+            </li>
+          </ul>
+          <br>
+          <button mat-fab extended (click)="editRating()">
+            <mat-icon>mode_edit</mat-icon>
+            Изменить оценку?
+          </button>
+        </div>
+      </div>
+      <div class="row" *ngIf="!isRating">
+        <div class="col-sm-12">
+          <p>Общий рейтинг: {{movie.averageRate}} </p>
+          <p>Уже посмотрели фильм? Поставьте оценку! </p>
+          <ul class="list-inline rating-list" *ngFor="let star of stars; let i= index" style="display: inline-block">
+            <li (click)="countStar(star)" id="{{'starId'+i}}" [ngClass]="{'selected': (star <= selectedValue)}"
+                (mouseover)="addClass(star)" (mouseout)="removeClass(star)">
+              ★
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 p-1">
+      <img class="img-fluid" [src]="formatImage(movie.image)" alt="post image">
+    </div>
+    <div class="col-md-4">
+      <p class="card-text">{{movie.textLarge}}</p>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+  <span class="btn btn-sm btn-outline-secondary fs-3 my-3" routerLink="/movie/{{movie.idMovie}}/reviews-list">Больше рецензий</span>
+</div>

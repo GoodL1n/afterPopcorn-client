@@ -1,0 +1,31 @@
+<div class="movie-add-card">
+  <form [formGroup]="movieForm">
+    <div>
+      <div class="d-flex justify-content-center">
+        <mat-form-field appearance="outline">
+          <mat-label>Title</mat-label>
+          <input matInput formControlName="title">
+        </mat-form-field>
+      </div>
+      <div class="d-flex justify-content-center">
+        <mat-form-field appearance="outline">
+          <mat-label>Text</mat-label>
+          <input matInput formControlName="textMini">
+        </mat-form-field>
+      </div>
+      <div class="d-flex justify-content-center">
+        <mat-form-field appearance="outline">
+          <mat-label>Text</mat-label>
+          <input matInput formControlName="textLarge">
+        </mat-form-field>
+      </div>
+      <div class="d-flex justify-content-center" id="controls">
+        <button style="width: 20%" [disabled]="movieForm.invalid" (click)="submit()" mat-flat-button color="primary">
+          Опубликовать
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+<mat-divider></mat-divider>
+<router-outlet></router-outlet>
