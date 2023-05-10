@@ -1,3 +1,57 @@
+.info-part{
+  display:flex;
+  flex-direction: row;
+}
+
+.block-main-info {
+  width: 33%;
+  margin: 5px;
+}
+.genres{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-right: 5px;
+  margin-bottom: 10px;
+}
+
+.tag{
+  display: flex;
+  flex-direction: row;
+}
+
+.tag .name-tag{
+  color: rgba(0,0,0,.6);
+}
+
+.block-image{
+  width: 33%;
+}
+.block-second{
+  width: 33%;
+  margin: 5px;
+}
+
+.rating{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.general-rating{
+  display: flex;
+  flex-direction: column;
+}
+
+.user-rating{
+  display: flex;
+  flex-direction: column;
+}
+
+.setRateStars{
+  display: flex;
+  justify-content: center;
+}
+
 .rating-list {
   display: inline-block;
   list-style: none;

@@ -26,6 +26,10 @@ export class MovieAddComponent implements OnInit{
     return this.fb.group(
       {
         title: ['', Validators.compose([Validators.required])],
+        country:['', Validators.compose([Validators.required])],
+        date:['', Validators.compose([Validators.required])],
+        duration:['', Validators.compose([Validators.required])],
+        trailer:['', Validators.compose([Validators.required])],
         textMini: ['', Validators.compose([Validators.required])],
         textLarge: ['', Validators.compose([Validators.required])],
       });
@@ -34,6 +38,10 @@ export class MovieAddComponent implements OnInit{
   submit():void{
     this.adminService.createMovie({
       title: this.movieForm.value.title,
+      country: this.movieForm.value.country,
+      date: this.movieForm.value.date,
+      duration: this.movieForm.value.duration,
+      trailer: this.movieForm.value.trailer,
       textMini: this.movieForm.value.textMini,
       textLarge: this.movieForm.value.textLarge
     }).subscribe(data=>{

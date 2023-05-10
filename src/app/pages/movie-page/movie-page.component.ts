@@ -9,6 +9,7 @@ import {UserService} from "../../service/user.service";
 import {RatingService} from "../../service/rating.service";
 import {Rating} from "../../models/Rating";
 import {NotificationService} from "../../service/notification.service";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-movie-page',
@@ -21,6 +22,7 @@ export class MoviePageComponent implements OnInit{
   user!:User;
   rate!:Rating;
   isRating = false;
+  url: any;
   stars: number[] = [1, 2, 3, 4, 5];
   selectedValue: number = 0;
   idMovie = Number(this.route.snapshot.paramMap.get('idMovie'));
@@ -32,7 +34,8 @@ export class MoviePageComponent implements OnInit{
               private reviewService: ReviewService,
               private userService: UserService,
               private ratingService: RatingService,
-              private notification: NotificationService) {
+              private notification: NotificationService,
+              private sanitizer:DomSanitizer) {
   }
 
   ngOnInit(): void {
@@ -49,6 +52,12 @@ export class MoviePageComponent implements OnInit{
         this.ratingService.getAverageRate(this.movie.idMovie).subscribe(data =>{
           this.movie.averageRate = data;
         });
+        if(this.movie.trailer != null){
+          this.url = this.sanitizer.bypassSecurityTrustResourceUrl(this.movie.trailer)
+        } else {
+          this.url = null
+        }
+        console.log(this.url)
     });
     this.reviewService.getReviewMovie(this.idMovie).subscribe(data=>{
       this.movie.reviews=data;
