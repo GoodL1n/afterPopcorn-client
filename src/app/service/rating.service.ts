@@ -12,6 +12,18 @@ export class RatingService {
 
   constructor(private http: HttpClient) {}
 
+  getRating(idMovie: any):Observable<any>{
+    return this.http.get(RATE_API + 'all/' + idMovie);
+  }
+
+  getRatingByUserId(userId: number):Observable<any>{
+    return this.http.get(RATE_API + 'rating/' + userId);
+  }
+
+  getRatingCurrentUser():Observable<any>{
+    return this.http.get(RATE_API + 'currentuser');
+  }
+
   getAverageRate(idMovie: any):Observable<any> {
     return this.http.get(RATE_API + idMovie);
   }

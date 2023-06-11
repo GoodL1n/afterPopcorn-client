@@ -1,0 +1,19 @@
+<div class = "header">
+  <div class = "avatar">
+    <img class="profile-image" [src]="formatImage(user.image) || 'https://img.icons8.com/ios/512/cat-profile.png'" alt="user image">
+  </div>
+  <div class = "profile-info">
+    <p>{{user.nickname}}</p>
+  </div>
+  <div class = "buttons" *ngIf="alreadyFriend">
+    <button mat-button (click)="deleteFriend()">Удалить из друзей</button>
+  </div>
+  <div class = "buttons" *ngIf="!comeInvite && !alreadyFriend">
+    <button mat-button (click)="invite()" *ngIf="!sentInvite">Добавить в друзья</button>
+    <button mat-button (click)="cancel()" *ngIf="sentInvite">Отменить заявку</button>
+  </div>
+  <div class = "buttons" *ngIf="comeInvite && !alreadyFriend">
+    <button mat-button (click)="accept()">Принять заявку</button>
+    <button mat-button (click)="noAccept()">Отклонить заявку</button>
+  </div>
+</div>

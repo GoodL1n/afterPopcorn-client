@@ -4,6 +4,7 @@ import {Review} from "../../../models/Review";
 import {ActivatedRoute, Router} from "@angular/router";
 import {User} from "../../../models/User";
 import {UserService} from "../../../service/user.service";
+import {ImageUploadService} from "../../../service/image-upload.service";
 
 @Component({
   selector: 'app-reviews-list',
@@ -17,6 +18,7 @@ export class ReviewsComponent implements OnInit{
   user!:User;
 
   constructor(private reviewService:ReviewService,
+              private imageService: ImageUploadService,
               private route:ActivatedRoute,
               private userService:UserService) {
   }
@@ -28,10 +30,20 @@ export class ReviewsComponent implements OnInit{
         for (let i = 0; i < this.reviews.length; i++) {
           this.userService.getUserById(this.reviews[i].user_id).subscribe(data => {
             this.user = data;
+            this.imageService.getImageByUserId(this.user.id).subscribe(data => {
+              this.reviews[i].user_image = data.imageBytes;
+            });
             this.reviews[i].nickname = this.user.nickname;
           })
         }
     });
+  }
+
+  formatImage(img: any): any {
+    if (img == null) {
+      return null;
+    }
+    return 'data:image/jpeg;base64,' + img;
   }
 
 }

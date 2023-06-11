@@ -34,7 +34,6 @@ export class ReviewAddComponent implements OnInit{
   createReviewForm():FormGroup{
     return this.fb.group(
       {
-        title: ['', Validators.compose([Validators.required])],
         text: ['', Validators.compose([Validators.required])]
       });
   }
@@ -43,7 +42,7 @@ export class ReviewAddComponent implements OnInit{
     this.userService.getCurrentUser().subscribe(data => {
       this.user = data;
       this.reviewService.createReview({
-        title: this.reviewForm.value.title,
+        title: ' ',
         text: this.reviewForm.value.text,
         likes: 0,
         user_id: this.user.id,

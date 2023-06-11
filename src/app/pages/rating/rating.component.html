@@ -1,0 +1,16 @@
+<div class="card" *ngFor="let rate of rating">
+  <div class="card-body">
+    <div class="rating-title">
+      <img class="profile-image" [src]="formatImage(rate.user_image) || 'https://img.icons8.com/ios/512/cat-profile.png'" alt="user image">
+      <a class = "profile-name" href="profile/{{rate.user_rate_id}}">{{rate.user_name}} </a>
+    </div>
+    <div class="rating-body">
+      <ul class="list-inline rating-list" *ngFor="let star of stars; let i= index"
+          style="display: inline-block">
+        <li [ngClass]="{'selected': (star <= rate.stars)}">
+          ★
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

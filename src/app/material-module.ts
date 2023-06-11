@@ -11,7 +11,7 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import {MatTableModule} from "@angular/material/table";
 import {MatDividerModule} from "@angular/material/divider";
 import {MatChipsModule} from "@angular/material/chips";
-
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   exports:[
@@ -27,6 +27,7 @@ import {MatChipsModule} from "@angular/material/chips";
     MatTableModule,
     MatDividerModule,
     MatChipsModule,
+    MatTabsModule
   ]
 })
 

@@ -1,0 +1,27 @@
+.card{
+  margin-top: 10px;
+}
+
+.review-title{
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+}
+
+.profile-image {
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+}
+
+.profile-name{
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+}
+
+.new-review{
+  display: flex;
+}

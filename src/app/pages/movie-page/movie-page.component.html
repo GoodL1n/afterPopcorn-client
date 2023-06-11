@@ -42,44 +42,38 @@
           </div>
           <div class="user-rating">
             <div class = "user-rating-text">Ваша оценка:</div>
-            <div class = "user-rating-bottom-false" *ngIf="!isRating">
-              <button class = "but-rating-false" mat-flat-button [matMenuTriggerFor]="setRating">
+            <div class = "user-rating-bottom-false">
+              <button class = "but-rating-false" mat-flat-button [matMenuTriggerFor]="setRating" *ngIf="!isRating">
                 <mat-icon>star_border</mat-icon>
                 <span>Оценить</span>
               </button>
-              <mat-menu #setRating="matMenu" xPosition="before">
-                <div class = "setRateStars">
-                  <ul class="list-inline rating-list" *ngFor="let star of stars; let i= index"
-                      style="display: inline-block">
-                    <li (click)="countStar(star)" id="{{'starId'+i}}" [ngClass]="{'selected': (star <= selectedValue)}"
-                        (mouseover)="addClass(star)" (mouseout)="removeClass(star)">
-                      ★
-                    </li>
-                  </ul>
-                </div>
-                <div class = "setReview">
-                  <span>Поделитесь первым впечатлением, буквально пару слов:</span>
-                  <mat-form-field appearance="outline">
-                    <textarea matInput></textarea>
-                  </mat-form-field>
-                  <button>Опубликовать</button>
-                  <button>Посмотреть</button>
-                </div>
-              </mat-menu>
-            </div>
-            <div class="user-rating-bottom-true" *ngIf="isRating">
-              <button mat-flat-button color="accent" [matMenuTriggerFor]="changeRating">
+              <button mat-flat-button color="accent" [matMenuTriggerFor]="setRating" *ngIf="isRating">
                 <mat-icon>star_border</mat-icon>
                 <span>{{rate.stars}}/5</span>
               </button>
-              <mat-menu #changeRating="matMenu" xPosition="before">
-                <div class = "setRateStars">
-                  <ul class="list-inline rating-list" *ngFor="let star of stars; let i= index"
-                      style="display: inline-block">
-                    <li [ngClass]="{'selected': (star <= rate.stars)}">
-                      ★
-                    </li>
-                  </ul>
+              <mat-menu #setRating="matMenu" xPosition="before">
+                <div (click)="$event.stopPropagation();" style="display: flex; flex-direction: column;align-items: center">
+                  <div class = "setRateStars">
+                    <ul class="list-inline rating-list" *ngFor="let star of stars; let i= index"
+                        style="display: inline-block">
+                      <li (click)="countStar(star, rate.stars)" id="{{'starId'+i}}" [ngClass]="{'selected': (star <= rate.stars)}"
+                          (mouseover)="addClass(star)" (mouseout)="removeClass(star)">
+                        ★
+                      </li>
+                    </ul>
+                  </div>
+                  <button mat-fab extended (click)="editRating()" *ngIf="isRating">
+                    <mat-icon>mode_edit</mat-icon>
+                    Удалить оценку
+                  </button>
+                  <br>
+                  <div class = "setReview">
+                    <span style="margin-left: 5px">Поделитесь первым впечатлением:</span>
+                    <form [formGroup]="miniReviewForm">
+                      <textarea class="form-control" formControlName="text"></textarea>
+                      <button mat-button style="margin-left:73px" (click)="submit()">Опубликовать</button>
+                    </form>
+                  </div>
                 </div>
               </mat-menu>
             </div>
@@ -87,48 +81,18 @@
         </div>
       </div>
     </div>
-    <div class="review-part">
-      <router-outlet></router-outlet>
-      <span class="btn btn-sm btn-outline-secondary fs-3 my-3" routerLink="/movie/{{movie.idMovie}}/reviews-list">Больше рецензий</span>
+    <div class = "users-active-block">
+      <div class = "users-reviews-block">
+        <h2>Рецензии зрителей: </h2>
+        <app-reviews-list></app-reviews-list>
+        <div class = "button-more-review">
+          <span class="btn btn-sm btn-outline-secondary fs-3 my-3" routerLink="/movie/{{movie.idMovie}}/reviews-list">Больше рецензий</span>
+        </div>
+      </div>
+      <div class = "users-ratings-block">
+        <h2>Оценки зрителей:</h2>
+        <app-rating></app-rating>
+      </div>
     </div>
   </div>
 </div>
-
-<!--        <div class="row justify-content-md-center" *ngIf="isRating">-->
-<!--          <div class="col">-->
-<!--            <div class="example-button-container">-->
-<!--              <button mat-fab color="accent">-->
-<!--                <mat-icon>star</mat-icon>-->
-<!--              </button>-->
-<!--            </div>-->
-<!--            <p>Общий рейтинг: {{movie.averageRate}} </p> <br>-->
-<!--            <p>Ваша оценка: </p>-->
-<!--            <ul class="list-inline rating-list" *ngFor="let star of stars; let i= index" style="display: inline-block">-->
-<!--              <li [ngClass]="{'selected': (star <= rate.stars)}">-->
-<!--                ★-->
-<!--              </li>-->
-<!--            </ul>-->
-<!--            <br>-->
-<!--            <button mat-fab extended (click)="editRating()">-->
-<!--              <mat-icon>mode_edit</mat-icon>-->
-<!--              Изменить оценку?-->
-<!--            </button>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div *ngIf="!isRating">-->
-<!--          <div>-->
-<!--            <div class="example-button-container">-->
-<!--              <button mat-fab color="accent">-->
-<!--                <mat-icon>star</mat-icon>-->
-<!--              </button>-->
-<!--            </div>-->
-<!--            <p>Оценка: {{movie.averageRate}} </p>-->
-<!--            <p>Уже посмотрели фильм? Поставьте оценку! </p>-->
-<!--            <ul class="list-inline rating-list" *ngFor="let star of stars; let i= index" style="display: inline-block">-->
-<!--              <li (click)="countStar(star)" id="{{'starId'+i}}" [ngClass]="{'selected': (star <= selectedValue)}"-->
-<!--                  (mouseover)="addClass(star)" (mouseout)="removeClass(star)">-->
-<!--                ★-->
-<!--              </li>-->
-<!--            </ul>-->
-<!--          </div>-->
-<!--        </div>-->

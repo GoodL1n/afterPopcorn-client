@@ -6,22 +6,19 @@
   </div>
   <div *ngIf="!isGenreSel" class="row">
     <div class="card col-md-5 mx-5 mb-3" *ngFor="let movie of movies">
-      <div class="row g-0">
+      <div class="row g-0 mb-2">
         <div class="col-md-4 mt-2">
-          <img class="img-fluid" [src]="formatImage(movie.image)" alt="post image">
+          <img class="movie-image" [src]="formatImage(movie.image)" alt="post image">
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8 mb-4">
           <div class="card-body">
-            <h3 class="card-title text-center fw-bold">{{movie.title}}</h3>
+            <a class = "movie-title" href="/movie/{{movie.idMovie}}">{{movie.title}}</a>
             <h3>Общий рейтинг: {{movie.averageRate}}</h3>
             <mat-card-subtitle *ngFor="let genre of movie.genres">
               {{genre.title}}
             </mat-card-subtitle>
             <br><br>
             <p class="card-text">{{movie.textMini}}</p>
-            <button style="width: 40%;" routerLink="/movie/{{movie.idMovie}}" mat-flat-button color="accent">
-              Подробнее
-            </button>
           </div>
         </div>
       </div>
@@ -29,22 +26,19 @@
   </div>
   <div *ngIf="isGenreSel" class="row">
     <div class="card col-md-5 mx-5 mb-3" *ngFor="let movie of movies">
-      <div class="row g-0">
-        <div class="col-md-4">
-          <img class="img-fluid" [src]="formatImage(movie.image)" alt="post image">
+      <div class="row g-0 mb-2">
+        <div class="col-md-4 mt-2">
+          <img class="movie-image" [src]="formatImage(movie.image)" alt="post image">
         </div>
-        <div class="col-md-8">
+        <div class="col-md-8 mb-4">
           <div class="card-body">
-            <h3 class="card-title text-center fw-bold">{{movie.title}}</h3>
+            <a class = "movie-title" href="/movie/{{movie.idMovie}}">{{movie.title}}</a>
             <h3>Общий рейтинг: {{movie.averageRate}}</h3>
             <mat-card-subtitle *ngFor="let genre of movie.genres">
               {{genre.title}}
             </mat-card-subtitle>
             <br><br>
             <p class="card-text">{{movie.textMini}}</p>
-            <button style="width: 40%;" routerLink="/movie/{{movie.idMovie}}" mat-flat-button color="primary">
-              Подробнее
-            </button>
           </div>
         </div>
       </div>

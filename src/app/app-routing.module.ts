@@ -11,6 +11,7 @@ import {UserComponent} from "./pages/profile/user/user.component";
 import {UserReviewsComponent} from "./pages/profile/user-reviews/user-reviews.component";
 import {MovieAddComponent} from "./pages/admin/movie-add/movie-add.component";
 import {MovieListComponent} from "./pages/admin/movie-list/movie-list.component";
+import {PublicProfileComponent} from "./pages/public-profile/public-profile.component";
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'profile', component: UserComponent, canActivate: [AuthGuardService], children:[
       {path: '', component: UserReviewsComponent, canActivate: [AuthGuardService]}
     ]},
+  {path: 'profile/:idUser', component: PublicProfileComponent, canActivate: [AuthGuardService]},
   {path: 'admin', component: MovieAddComponent, canActivate: [AuthGuardService], children: [
       {path: '', component: MovieListComponent, canActivate: [AuthGuardService]}
     ]},

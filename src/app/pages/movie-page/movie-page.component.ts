@@ -10,6 +10,7 @@ import {RatingService} from "../../service/rating.service";
 import {Rating} from "../../models/Rating";
 import {NotificationService} from "../../service/notification.service";
 import {DomSanitizer} from "@angular/platform-browser";
+import {FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-movie-page',
@@ -26,6 +27,7 @@ export class MoviePageComponent implements OnInit{
   stars: number[] = [1, 2, 3, 4, 5];
   selectedValue: number = 0;
   idMovie = Number(this.route.snapshot.paramMap.get('idMovie'));
+  miniReviewForm!: FormGroup;
 
   constructor(private route:ActivatedRoute,
               private router: Router,
@@ -35,7 +37,8 @@ export class MoviePageComponent implements OnInit{
               private userService: UserService,
               private ratingService: RatingService,
               private notification: NotificationService,
-              private sanitizer:DomSanitizer) {
+              private sanitizer:DomSanitizer,
+              private fb: FormBuilder) {
   }
 
   ngOnInit(): void {
@@ -62,6 +65,10 @@ export class MoviePageComponent implements OnInit{
     this.reviewService.getReviewMovie(this.idMovie).subscribe(data=>{
       this.movie.reviews=data;
     });
+
+    this.miniReviewForm = this.fb.group({
+      text: ['']
+    });
   }
   getImageToMovie(movie: Movie):void{
     this.imageService.getImageByMovieId(this.idMovie)
@@ -79,13 +86,15 @@ export class MoviePageComponent implements OnInit{
 
   //star rating
 
-  countStar(star:any) {
+  countStar(star:any, stars:any) {
     this.selectedValue = star;
     this.rate.stars = star;
     this.ratingService.editRate(this.rate).subscribe( () =>{
-      this.notification.showSnackbar("Оценка поставлена");
+      this.isRating = true;
+      if(stars == 0){
+        window.location.reload()
+      }
     });
-    window.location.reload();
   }
 
   addClass(star:any) {
@@ -112,5 +121,19 @@ export class MoviePageComponent implements OnInit{
       this.notification.showSnackbar("Оценка удалена");
     });
     window.location.reload();
+  }
+
+  submit():void{
+    this.userService.getCurrentUser().subscribe(data => {
+      this.user = data;
+      this.reviewService.createReview({
+        text: this.miniReviewForm.value.text,
+        likes: 0,
+        user_id: this.user.id,
+        movie_id: this.idMovie
+      }, this.idMovie).subscribe(data=>{
+        window.location.reload();
+      })
+    })
   }
 }

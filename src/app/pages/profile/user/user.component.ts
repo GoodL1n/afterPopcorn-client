@@ -13,6 +13,8 @@ export class UserComponent implements OnInit{
   user!:User;
   image!:File;
   selectedFile!:File;
+  friends: User[] = [];
+  reviewOpen: boolean = true;
 
   constructor(private userService:UserService,
               private imageService:ImageUploadService,
@@ -22,6 +24,16 @@ export class UserComponent implements OnInit{
   ngOnInit(): void {
     this.userService.getCurrentUser().subscribe(data => {
       this.user = data;
+      this.userService.getFriendsCurrentUser().subscribe(data =>{
+        console.log(data)
+        this.friends = data
+        for(let i = 0; i < this.friends.length; i++){
+          this.imageService.getImageByUserId(this.friends[i].id).subscribe(data => {
+            this.friends[i].image = data.imageBytes;
+          });
+        }
+        }
+      )
       this.imageService.getImageUser().subscribe(data => {
         this.user.image = data.imageBytes;
       });

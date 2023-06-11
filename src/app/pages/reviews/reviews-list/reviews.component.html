@@ -1,10 +1,12 @@
-<div class = "container reviews-page">
-  <div class="card text-center mt-3" *ngFor="let review of reviews">
-    <h3 class="card-header">{{review.title}}
-    <br> Nickname : {{review.nickname}} </h3>
-    <div class="card-body">
-      <p class="card-text">{{review.text}}</p>
+<div class="card" *ngFor="let review of reviews">
+  <div class="card-body">
+    <div class="card-title review-title">
+      <img class="profile-image" [src]="formatImage(review.user_image) || 'https://img.icons8.com/ios/512/cat-profile.png'" alt="user image">
+      <a class = "profile-name" href="profile/{{review.user_id}}">{{review.nickname}} </a>
     </div>
+    <div class="card-text">{{review.text}}</div>
   </div>
-  <router-outlet></router-outlet>
+</div>
+<div class = "new-review">
+  <app-review-add></app-review-add>
 </div>

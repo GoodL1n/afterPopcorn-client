@@ -1,17 +1,36 @@
-<mat-grid-list cols="3">
-  <mat-grid-tile>
+<div class = "header" style="margin-top: 10px">
+  <div class = "avatar">
     <img class="profile-image" [src]="formatImage(user.image) || 'https://img.icons8.com/ios/512/cat-profile.png'" alt="user image">
-  </mat-grid-tile>
-  <mat-grid-tile>
     <input type="file"
            style="display: none"
            #fileInput
            (change)="onFileSelected($event)">
-
     <button mat-button (click)="fileInput.click()">Обновить аватар</button>
-  </mat-grid-tile>
-  <mat-grid-tile>
+  </div>
+  <div class = "profile-info">
     <p>{{user.nickname}}</p>
-  </mat-grid-tile>
-</mat-grid-list>
-<router-outlet></router-outlet>
+  </div>
+  <div class = "buttons">
+  </div>
+</div>
+<div class = "body">
+  <div class = "user-activities-buttons">
+    <button type="button" class="btn btn-outline-secondary" (click)="reviewOpen = true">Мои рецензии</button>
+    <button type="button" style="margin-left: 15px" class="btn btn-outline-secondary" (click)="reviewOpen = false">Мои оценки</button>
+  </div>
+  <div class = "user-info">
+    <div class = "user-reviews" style="margin-top: 10px" *ngIf="reviewOpen">
+      <app-user-reviews></app-user-reviews>
+    </div>
+    <div class = "user-stars" style="margin-top: 10px" *ngIf="!reviewOpen">
+      <app-user-rating></app-user-rating>
+    </div>
+    <div class = "user-friends">
+      <p class = "friend-title">Мои друзья: </p>
+      <div class = "friend" *ngFor = "let friend of friends">
+        <img class="friend-image" [src]="formatImage(friend.image) || 'https://img.icons8.com/ios/512/cat-profile.png'" alt="user image">
+        <a class = "friend-name" href="profile/{{friend.id}}">{{friend.nickname}} </a>
+      </div>
+    </div>
+  </div>
+</div>

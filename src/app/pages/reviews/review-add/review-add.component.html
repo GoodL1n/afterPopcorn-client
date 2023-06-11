@@ -1,12 +1,8 @@
-<div class="my-3">
+<div class = "review-add">
   <form [formGroup]="reviewForm">
-    <div class="col-sm-6">
-      <label for="form1" class="form-label">Заголовок</label>
-      <input type="text" class="form-control" formControlName="title" id="form1" placeholder="Заголовок">
-    </div>
-    <div class="col-sm-6">
-      <label for="form2" class="form-label">Текст рецензии</label>
-      <textarea class="form-control" formControlName="text" id="form2" rows="3"></textarea>
+    <div class = "review-add-form">
+      <label for="form2" class="form-label">Оставьте свою рецензию:</label>
+      <textarea class="form-control" formControlName="text" id="form2"></textarea>
     </div>
     <div class="but" id="controls">
       <button class="btn btn-sm btn-outline-secondary me-3 fs-6" [disabled]="reviewForm.invalid" (click)="submit()">

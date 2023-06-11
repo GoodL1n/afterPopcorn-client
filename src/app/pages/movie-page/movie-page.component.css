@@ -65,3 +65,25 @@
 .rating-list li.selected {
   color: #ffd700;
 }
+
+.users-active-block{
+  margin-top:15px;
+  display: flex;
+  flex-direction: row;
+}
+
+.users-reviews-block{
+  width: 70%
+}
+
+.users-ratings-block{
+  margin-left: 10px;
+  width: 30%;
+}
+
+.button-more-review{
+  display: flex;
+  justify-content: center;
+}
+
+

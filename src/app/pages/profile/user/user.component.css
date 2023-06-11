@@ -1,3 +1,10 @@
+.header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .profile-image {
   border-radius: 50%;
   width: 150px;
@@ -6,4 +13,66 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 2rem;
+}
+.body{
+  display: flex;
+  flex-direction: column;
+}
+
+.user-activities-buttons{
+  display: flex;
+  margin-left: 400px;
+  margin-top: 15px;
+}
+
+.user-info{
+  display: flex;
+  flex-direction: row;
+}
+
+.user-reviews{
+  width: 80%;
+}
+
+.review-title{
+  text-align: center;
+}
+
+.user-stars{
+  width: 80%;
+}
+
+.user-friends{
+  margin-left: 5px;
+  width: 20%;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(0, 0, 0, 0.175);
+  border-radius: 0.375rem;
+}
+
+.friend-title{
+  margin-top: 15px;
+  text-align: center;
+}
+
+.friend{
+  display: flex;
+  flex-direction: row;
+  margin: 5px 0 0 15px;
+}
+
+.friend-image {
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+}
+
+.friend-name{
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: black;
 }

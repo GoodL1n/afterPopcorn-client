@@ -1,0 +1,48 @@
+.card{
+  margin-top: 10px;
+}
+
+.card-body{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.rating-title{
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+}
+
+.rating-body{
+  display: flex;
+  margin-left: 80px;
+}
+
+.rating-list {
+  display: inline-block;
+  list-style: none;
+}
+.rating-list li{
+  font-size: 20px;
+  float: right;
+  color: #ddd;
+  padding: 10px 5px;
+}
+.rating-list li.selected {
+  color: #ffd700;
+}
+
+.profile-image {
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+}
+
+.profile-name{
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+}

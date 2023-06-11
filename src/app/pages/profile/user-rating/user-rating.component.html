@@ -1,0 +1,19 @@
+<div class="card" *ngFor="let rate of rating">
+  <div class="card-body">
+    <div class="rating-title">
+      <p class = "rating-name">{{rate.movie_name}} </p>
+    </div>
+    <div class="rating-body">
+      <ul class="list-inline rating-list" *ngFor="let star of stars; let i= index"
+          style="display: inline-block">
+        <li [ngClass]="{'selected': (star <= rate.stars)}">
+          ★
+        </li>
+      </ul>
+    </div>
+    <button style="width: 20%"  mat-button>
+      <mat-icon>delete</mat-icon>
+      Удалить оценку
+    </button>
+  </div>
+</div>

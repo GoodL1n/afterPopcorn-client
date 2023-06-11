@@ -21,6 +21,9 @@ import { UserReviewsComponent } from './pages/profile/user-reviews/user-reviews.
 import { MovieAddComponent } from './pages/admin/movie-add/movie-add.component';
 import { MovieListComponent } from './pages/admin/movie-list/movie-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PublicProfileComponent } from './pages/public-profile/public-profile.component';
+import { RatingComponent } from './pages/rating/rating.component';
+import { UserRatingComponent } from './pages/profile/user-rating/user-rating.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     UserComponent,
     UserReviewsComponent,
     MovieAddComponent,
-    MovieListComponent
+    MovieListComponent,
+    PublicProfileComponent,
+    RatingComponent,
+    UserRatingComponent
   ],
   imports: [
     BrowserModule,
